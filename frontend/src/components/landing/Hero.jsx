@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { ArrowDown, Sparkles, Zap, Brain } from 'lucide-react';
 
 function Hero() {
@@ -7,6 +8,7 @@ function Hero() {
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
   const scale = useTransform(scrollY, [0, 300], [1, 0.8]);
   const y = useTransform(scrollY, [0, 300], [0, 100]);
+  const navigate = useNavigate();
 
   return (
     <motion.section
@@ -18,7 +20,6 @@ function Hero() {
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-dark-bg via-dark-card to-dark-bg" />
         
-        {/* Animated Gradient Orbs */}
         <motion.div
           className="absolute top-20 left-1/4 w-96 h-96 bg-accent-primary/20 rounded-full blur-3xl"
           animate={{
@@ -71,7 +72,7 @@ function Hero() {
           ))}
         </div>
 
-        {/* Main Heading with Stagger Animation */}
+        {/* Main Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -119,6 +120,7 @@ function Hero() {
           transition={{ duration: 0.8, delay: 0.9 }}
         >
           <motion.button
+            onClick={() => navigate('/dashboard')}
             className="group relative px-8 py-4 bg-gradient-to-r from-accent-primary to-accent-cyan rounded-full text-lg font-semibold overflow-hidden"
             whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(37, 99, 235, 0.6)' }}
             whileTap={{ scale: 0.95 }}
